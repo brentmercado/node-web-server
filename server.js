@@ -1,23 +1,26 @@
 const express = require('express');
+const hbs = require('hbs');   // handlbars is a view for express (helpful)
 
 var app = express();
 
+app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '/public')); // middleware that will make routing easy
                                                 // __dirname is the pathname of the project
 
 app.get('/', (req, res) => {
    //res.send('<h1>Hello Express!</h1>');
-   res.send({
-      name: 'Brent',
-      likes: [
-         'Lisa',
-         'Biking'
-      ]
-   });
+      res.render('home.hbs', {
+         pageTitle: 'Home Page',
+         welcomeMessage: 'Welcome to my website!',
+         currentYear: new Date().getFullYear()
+      });
 });
 
 app.get('/about', (req, res) => {
-   res.send('About Page');
+   res.render('about.hbs', {
+      pageTitle: 'About Page',
+      currentYear: new Date().getFullYear()
+   }); // pass the render page in the default folder "views"
 });
 
 // /bad - send back json with errorMessage
