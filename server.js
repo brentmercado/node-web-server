@@ -3,6 +3,7 @@ const hbs = require('hbs');   // handlbars is a view for express (helpful)
 
 var app = express();
 
+hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '/public')); // middleware that will make routing easy
                                                 // __dirname is the pathname of the project
