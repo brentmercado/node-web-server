@@ -6,8 +6,7 @@ var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
-app.use(express.static(__dirname + '/public')); // middleware that will make routing easy
-                                                // __dirname is the pathname of the project
+
 
 app.use((req, res, next) => {
    var now = new Date().toString();
@@ -21,6 +20,15 @@ app.use((req, res, next) => {
    });
    next();
 });
+
+// this will make all pages show maintenance page
+// app.use((req, res, next) => {
+//    res.render('maintenance.hbs');
+// });
+
+app.use(express.static(__dirname + '/public')); // middleware that will make routing easy
+                                                // __dirname is the pathname of the project
+
 
 hbs.registerHelper('getCurrentYear', () => {
    return new Date().getFullYear();
