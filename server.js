@@ -53,12 +53,18 @@ app.get('/about', (req, res) => {
    }); // pass the render page in the default folder "views"
 });
 
+app.get('/projects', (req, res) => {
+   res.render('projects.hbs', {
+      pageTitle: 'Projects Page'
+   });
+});
+
 // /bad - send back json with errorMessage
 app.get('/bad', (req, res) => {
    res.send({
       errorMessage: 'Unable to handle request'
    });
-})
+});
 
 app.listen(port, () => {
    console.log(`Server is up on port ${port}`);
